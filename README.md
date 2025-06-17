@@ -149,7 +149,6 @@ This tool is designed for legitimate productivity purposes. Please use responsib
 ## 🔗 Related Projects
 
 - [MouseJiggler](https://github.com/arkane-systems/mousejiggler) - C# WinForms version
-- [Caffeine](https://github.com/collective/caffeine) - Cross-platform keep-awake utility
 - [PowerToys Awake](https://docs.microsoft.com/en-us/windows/powertoys/awake) - Microsoft's official keep-awake tool
 
 ## 📞 Support
